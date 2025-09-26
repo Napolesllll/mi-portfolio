@@ -197,8 +197,8 @@ const HomePage = memo(({ data, goToProjects }) => {
         {/* Stats */}
         <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 mb-6 md:mb-8 px-2 sm:px-0">
           <StatCard value={stats?.experience || "4+"} label="Años" delay={0} />
-          <StatCard value={stats?.projects || "25+"} label="Proyectos" delay={0.5} />
-          <StatCard value={stats?.clients || "15+"} label="Clientes" delay={1} />
+          <StatCard value={stats?.projects || "5+"} label="Proyectos" delay={0.5} />
+          <StatCard value={stats?.clients || "10+"} label="Clientes" delay={1} />
           <StatCard label="Café" delay={1.5} icon={Coffee} />
         </motion.div>
 

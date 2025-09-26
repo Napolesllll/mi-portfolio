@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Bookmark } from 'lucide-react';
 
 const BookNavigation = memo(({ 
   pages, 
@@ -56,13 +55,12 @@ const BookNavigation = memo(({
           >
             <div className="flex items-center justify-between">
               {/* Logo */}
-              <div className="flex items-center space-x-2">
-                <motion.div
-                  animate={animationConfig.bookmarkRotation}
-                  transition={animationConfig.bookmarkTransition}
-                >
-                  <Bookmark className="w-6 h-6 text-yellow-400" />
-                </motion.div>
+              <div className="flex items-center space-x-1">
+                <img 
+                  src="/log2.png" 
+                  alt="Logo" 
+                  className="w-20 h-18"
+                />
                 <span className="text-lg font-bold text-slate-200 font-serif">
                   Mi Portfolio 
                 </span>
