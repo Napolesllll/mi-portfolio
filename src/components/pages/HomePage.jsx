@@ -82,9 +82,21 @@ const HomePage = memo(({ data, goToProjects }) => {
     <div className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-3 sm:px-4 py-6">
       {/* Decoraciones */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Foto arriba derecha */}
+        {/* Foto arriba derecha - solo visible en desktop */}
         <div
-          className="absolute top-6 right-6 w-28 h-28 sm:w-28 sm:h-28 md:w-28 md:h-28 rounded-full border-2 border-purple-500/25 overflow-hidden bg-slate-800 cursor-pointer pointer-events-auto"
+          className="hidden sm:block absolute top-16 right-6 w-28 h-28 md:w-28 md:h-28 rounded-full border-2 border-purple-500/25 overflow-hidden bg-slate-800 cursor-pointer pointer-events-auto"
+          onClick={() => setShowModal(true)}
+        >
+          <img
+            src="/mifoto.jpg"
+            alt="Foto personal"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Foto para móvil - posicionada absolutamente arriba a la derecha */}
+        <div
+          className="sm:hidden absolute top-6 right-6 w-20 h-20 rounded-full border-2 border-purple-500/25 overflow-hidden bg-slate-800 cursor-pointer pointer-events-auto z-10"
           onClick={() => setShowModal(true)}
         >
           <img
@@ -147,8 +159,8 @@ const HomePage = memo(({ data, goToProjects }) => {
         initial="hidden"
         animate="visible"
       >
-        {/* Icono principal */}
-        <motion.div variants={itemVariants} className="mb-4 sm:mb-6 relative">
+        {/* Icono principal - ahora solo la barita centrada */}
+        <motion.div variants={itemVariants} className="mb-4 sm:mb-6 flex justify-center">
           <motion.div
             animate={{ rotate: [0, 10, -10, 5, -5, 0], scale: [1, 1.05, 1] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
