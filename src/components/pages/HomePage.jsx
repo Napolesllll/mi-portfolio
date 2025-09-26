@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useCallback } from 'react';
+import React, { memo, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Wand2, 
@@ -6,14 +6,12 @@ import {
   Globe, 
   Server, 
   Database, 
-  Sparkles,
   Star,
-  Download,
   ArrowDown,
   Coffee
 } from 'lucide-react';
 
-const HomePage = memo(({ data }) => {
+const HomePage = memo(({ data, goToProjects }) => {
   const { personal, stats } = data || {};
 
   // Animaciones
@@ -49,16 +47,6 @@ const HomePage = memo(({ data }) => {
     { icon: Database, name: "PostgreSQL", color: "text-blue-400" }
   ], []);
 
-  const handleDownloadCV = useCallback(() => {
-    if (personal?.resume) {
-      window.open(personal.resume, '_blank');
-    }
-  }, [personal?.resume]);
-
-  const handleViewProjects = useCallback(() => {
-    console.log('Navigate to projects');
-  }, []);
-
   // Cards
   const StatCard = memo(({ value, label, delay = 0, icon: IconComponent }) => (
     <div className="backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-lg border border-purple-500/25 bg-[rgba(30,30,30,0.75)]">
@@ -91,11 +79,19 @@ const HomePage = memo(({ data }) => {
     <div className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-3 sm:px-4 py-6">
       {/* Decoraciones */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-10 right-10 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 border-2 border-purple-500/15 rounded-full"
-          animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
+        {/* Foto arriba derecha */}
+        <div className="absolute top-6 right-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-purple-500/25 overflow-hidden bg-slate-800">
+          {/* Aquí irá tu foto */}
+          {personal?.photo && (
+            <img
+              src={personal.photo}
+              alt="Foto personal"
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+
+        {/* Círculos decorativos */}
         <motion.div
           className="absolute bottom-10 left-10 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 border-2 border-cyan-500/15 rounded-full"
           animate={{ rotate: -360, scale: [1, 1.1, 1] }}
@@ -121,10 +117,12 @@ const HomePage = memo(({ data }) => {
           </motion.div>
         </motion.div>
 
+        {/* Saludo con nombre */}
         <motion.p variants={itemVariants} className="text-purple-400 text-sm sm:text-lg md:text-xl font-semibold mb-2 animate-pulse">
-          ✨ Bienvenido! ✨
+          ✨ ¡Bienvenido! soy ✨
         </motion.p>
 
+        {/* Nombre grande */}
         <motion.h1
           variants={itemVariants}
           className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-2 md:mb-4 font-serif relative px-2"
@@ -134,6 +132,7 @@ const HomePage = memo(({ data }) => {
           </span>
         </motion.h1>
 
+        {/* Subtítulo */}
         <motion.h2 variants={itemVariants} className="text-base sm:text-xl md:text-2xl lg:text-3xl text-slate-300 mb-3 sm:mb-4 font-serif italic">
           {personal?.title || "Mago del Desarrollo Full Stack"}
         </motion.h2>
@@ -157,21 +156,10 @@ const HomePage = memo(({ data }) => {
           ))}
         </motion.div>
 
-        {/* Botones */}
+        {/* Botón Ver Proyectos */}
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center items-center">
           <motion.button
-            onClick={handleDownloadCV}
-            className="magic-button group w-full sm:w-auto"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>Descargar CV</span>
-            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
-          </motion.button>
-
-          <motion.button
-            onClick={handleViewProjects}
+            onClick={goToProjects}
             className="px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 bg-transparent border-2 border-purple-500 text-slate-300 font-semibold rounded-lg hover:bg-purple-500 hover:text-white transition-all duration-200 flex items-center space-x-2 group w-full sm:w-auto"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
@@ -183,7 +171,7 @@ const HomePage = memo(({ data }) => {
         </motion.div>
 
         <motion.p variants={itemVariants} className="mt-6 md:mt-10 text-slate-400 font-medium text-xs sm:text-sm md:text-base animate-pulse">
-          ⬇️ Desliza las páginas para descubrir ⬇️
+          ← Desliza las páginas para descubrir →
         </motion.p>
       </motion.div>
     </div>

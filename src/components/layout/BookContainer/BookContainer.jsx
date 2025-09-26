@@ -70,6 +70,9 @@ const BookContainer = () => {
     []
   );
 
+  // Detectamos si estamos en HomePage para pasar goToProjects
+  const isHomePage = CurrentPageComponent === HomePage;
+
   return (
     <div
       className="min-h-screen relative overflow-hidden"
@@ -99,7 +102,14 @@ const BookContainer = () => {
             getAnimationConfig={getAnimationConfig}
             pages={pages}
             portfolioData={portfolioData}
-            CurrentPageComponent={CurrentPageComponent}
+            // Pasamos goToProjects SOLO si es HomePage
+            CurrentPageComponent={(props) => (
+              <CurrentPageComponent
+                {...props}
+                data={portfolioData}
+                goToProjects={isHomePage ? () => goToPage(2) : undefined}
+              />
+            )}
             pageVariants={pageVariants}
             mobilePageVariants={mobilePageVariants}
           />

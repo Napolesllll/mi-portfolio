@@ -71,8 +71,8 @@ const ContactPage = ({ data }) => {
     {
       icon: Github,
       name: 'GitHub',
-      username: '@tu-usuario',
-      url: social?.github || 'https://github.com/tu-usuario',
+      username: '@Napolesllll',
+      url: social?.github || 'https://github.com/Napolesllll',
       color: 'bg-slate-700 hover:bg-slate-600',
       description: 'Explora mis repositorios'
     },
@@ -96,7 +96,7 @@ const ContactPage = ({ data }) => {
       icon: Globe,
       name: 'Portfolio',
       username: 'mi-portfolio.com',
-      url: personal?.website || 'https://tu-portfolio.com',
+      url: 'https://mi-portfolio-jhon-cano.vercel.app',
       color: 'bg-emerald-600 hover:bg-emerald-700',
       description: 'Mi sitio web personal'
     }

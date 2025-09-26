@@ -68,7 +68,7 @@ const WelcomeScreen = ({ show }) => {
             animate="visible"
             className="text-3xl md:text-5xl font-bold mt-6 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
           >
-            Bienvenido 🚀
+            Bienvenido a mi Portfolio 🚀
           </motion.h1>
 
           <motion.p

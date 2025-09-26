@@ -4,13 +4,13 @@ const portfolioData = {
     title: "Desarrollador Full Stack",
     description: "Especializado en crear experiencias web extraordinarias con React, Next.js y Node.js",
     location: "Medellín, Colombia",
-    email: "jhon@example.com",
-    phone: "+57 123 456 7890",
+    email: "canojhon148@gmail.com",
+    phone: "+57 324 534 0651",
     website: "https://jhon-portfolio.com",
     resume: "https://example.com/cv.pdf"
   },
   social: {
-    github: "https://github.com/jhoncano",
+    github: "https://github.com/Napolesllll",
     linkedin: "https://linkedin.com/in/jhoncano",
     twitter: "https://twitter.com/jhoncano"
   },
