@@ -1,5 +1,5 @@
-import React, { memo, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React, { memo, useMemo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Wand2, 
   Code, 
@@ -8,11 +8,14 @@ import {
   Database, 
   Star,
   ArrowDown,
-  Coffee
+  Coffee,
+  X
 } from 'lucide-react';
 
 const HomePage = memo(({ data, goToProjects }) => {
   const { personal, stats } = data || {};
+
+  const [showModal, setShowModal] = useState(false);
 
   // Animaciones
   const containerVariants = useMemo(() => ({
@@ -80,15 +83,15 @@ const HomePage = memo(({ data, goToProjects }) => {
       {/* Decoraciones */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Foto arriba derecha */}
-        <div className="absolute top-6 right-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-purple-500/25 overflow-hidden bg-slate-800">
-          {/* Aquí irá tu foto */}
-          {personal?.photo && (
-            <img
-              src={personal.photo}
-              alt="Foto personal"
-              className="w-full h-full object-cover"
-            />
-          )}
+        <div
+          className="absolute top-6 right-6 w-28 h-28 sm:w-28 sm:h-28 md:w-28 md:h-28 rounded-full border-2 border-purple-500/25 overflow-hidden bg-slate-800 cursor-pointer pointer-events-auto"
+          onClick={() => setShowModal(true)}
+        >
+          <img
+            src="/mifoto.jpg"
+            alt="Foto personal"
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Círculos decorativos */}
@@ -98,6 +101,44 @@ const HomePage = memo(({ data, goToProjects }) => {
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
       </div>
+
+      {/* Modal de foto */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowModal(false)}
+          >
+            {/* Botón X */}
+            <motion.button
+              className="absolute top-6 right-6 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowModal(false);
+              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+            >
+              <X className="w-6 h-6" />
+            </motion.button>
+
+            <motion.img
+              src="/mifoto.jpg"
+              alt="Foto personal grande"
+              className="w-full max-w-[600px] max-h-[80%] rounded-xl shadow-lg object-cover transform transition-transform duration-500 hover:scale-110"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Contenido */}
       <motion.div

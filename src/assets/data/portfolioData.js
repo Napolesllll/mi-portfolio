@@ -69,7 +69,7 @@ const portfolioData = {
       id: 1,
       title: "Mascoticas",
       subtitle: "E-commerce para Mascotas en Bucaramanga y Medellín",
-      category: "Full Stack",
+      category: "Frontend",
       description: "Tienda online especializada en productos para mascotas con presencia en Bucaramanga y Medellín.",
       longDescription: "Plataforma completa de e-commerce con gestión de inventario, carrito de compras y pasarelas de pago.",
       technologies: ["Next.js", "Node.js"],
@@ -87,14 +87,14 @@ const portfolioData = {
       demoUrl: "https://mascoticasbucaramangamedellin.com/",
       githubUrl: "#",
       duration: "1 mes",
-      team: "Full Stack Developer",
+      team: "Frontend Developer",
       status: "Completado"
     },
     {
       id: 2,
       title: "Explore Heaven",
       subtitle: "Plataforma de Descubrimiento de Viajes",
-      category: "Frontend",
+      category: "Full Stack",
       description: "Aplicación web moderna para explorar destinos turísticos alrededor del mundo.",
       longDescription: "Plataforma innovadora con búsquedas inteligentes, recomendaciones personalizadas y herramientas para planificar viajes.",
       technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "API REST"],
@@ -112,7 +112,7 @@ const portfolioData = {
       demoUrl: "https://explore-heaven.vercel.app/",
       githubUrl: "#",
       duration: "2 meses",
-      team: "Frontend Developer",
+      team: "Full Stack Developer",
       status: "Completado"
     }
   ]
