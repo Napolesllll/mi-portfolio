@@ -17,12 +17,15 @@ const BookControls = ({
         <motion.button
           onClick={prevPage}
           disabled={currentPage === 0 || isFlipping}
-          className={`p-3 rounded-full border-2 shadow-lg ${
+          className={`p-3 rounded-full border-2 shadow-lg transition-all duration-300 ${
             currentPage === 0 || isFlipping
-              ? 'bg-gray-200 text-gray-400 border-gray-300'
-              : 'bg-amber-600 text-white border-amber-700'
+              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
+              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700 shadow-purple-500/30'
           }`}
           whileTap={{ scale: 0.9 }}
+          style={currentPage > 0 && !isFlipping ? {
+            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
+          } : {}}
         >
           <ChevronLeft className="w-5 h-5" />
         </motion.button>
@@ -30,12 +33,15 @@ const BookControls = ({
         <motion.button
           onClick={nextPage}
           disabled={currentPage === pages.length - 1 || isFlipping}
-          className={`p-3 rounded-full border-2 shadow-lg ${
+          className={`p-3 rounded-full border-2 shadow-lg transition-all duration-300 ${
             currentPage === pages.length - 1 || isFlipping
-              ? 'bg-gray-200 text-gray-400 border-gray-300'
-              : 'bg-amber-600 text-white border-amber-700'
+              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
+              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700 shadow-purple-500/30'
           }`}
           whileTap={{ scale: 0.9 }}
+          style={currentPage < pages.length - 1 && !isFlipping ? {
+            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
+          } : {}}
         >
           <ChevronRight className="w-5 h-5" />
         </motion.button>
@@ -51,16 +57,19 @@ const BookControls = ({
           disabled={currentPage === 0 || isFlipping}
           className={`p-4 rounded-full border-2 shadow-lg transition-all duration-300 ${
             currentPage === 0 || isFlipping
-              ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed'
-              : 'bg-amber-600 text-white border-amber-700 hover:bg-amber-700'
+              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
+              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700'
           }`}
           whileHover={!prefersReducedMotion && currentPage > 0 ? { 
             scale: 1.1,
             y: -2,
-            boxShadow: "0 10px 25px rgba(139, 69, 19, 0.4)"
+            boxShadow: "0 10px 25px rgba(147, 51, 234, 0.5)"
           } : {}}
           whileTap={{ scale: 0.95 }}
           title="Página anterior (← o A)"
+          style={currentPage > 0 && !isFlipping ? {
+            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
+          } : {}}
         >
           <ChevronLeft className="w-6 h-6" />
         </motion.button>
@@ -72,16 +81,19 @@ const BookControls = ({
           disabled={currentPage === pages.length - 1 || isFlipping}
           className={`p-4 rounded-full border-2 shadow-lg transition-all duration-300 ${
             currentPage === pages.length - 1 || isFlipping
-              ? 'bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed'
-              : 'bg-amber-600 text-white border-amber-700 hover:bg-amber-700'
+              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
+              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700'
           }`}
           whileHover={!prefersReducedMotion && currentPage < pages.length - 1 ? { 
             scale: 1.1,
             y: -2,
-            boxShadow: "0 10px 25px rgba(139, 69, 19, 0.4)"
+            boxShadow: "0 10px 25px rgba(147, 51, 234, 0.5)"
           } : {}}
           whileTap={{ scale: 0.95 }}
           title="Página siguiente (→ o D)"
+          style={currentPage < pages.length - 1 && !isFlipping ? {
+            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
+          } : {}}
         >
           <ChevronRight className="w-6 h-6" />
         </motion.button>

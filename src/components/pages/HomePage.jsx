@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 const HomePage = ({ data }) => {
-  const { personal, skills, stats } = data || {};
+  const { personal,  stats } = data || {};
 
   // Animaciones de entrada
   const containerVariants = {
@@ -43,10 +43,10 @@ const HomePage = ({ data }) => {
 
   // Iconos de tecnologías
   const techIcons = [
-    { icon: Code, name: "React.js", color: "text-blue-600" },
-    { icon: Globe, name: "Next.js", color: "text-black" },
-    { icon: Server, name: "Node.js", color: "text-green-600" },
-    { icon: Database, name: "PostgreSQL", color: "text-blue-700" }
+    { icon: Code, name: "React.js", color: "text-cyan-400" },
+    { icon: Globe, name: "Next.js", color: "text-slate-300" },
+    { icon: Server, name: "Node.js", color: "text-emerald-400" },
+    { icon: Database, name: "PostgreSQL", color: "text-blue-400" }
   ];
 
   return (
@@ -55,12 +55,12 @@ const HomePage = ({ data }) => {
       <div className="absolute inset-0 pointer-events-none">
         {/* Círculos decorativos */}
         <motion.div
-          className="absolute top-10 right-10 w-32 h-32 border-2 border-amber-400/20 rounded-full"
+          className="absolute top-10 right-10 w-32 h-32 border-2 border-purple-500/20 rounded-full"
           animate={{ rotate: 360, scale: [1, 1.1, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute bottom-10 left-10 w-24 h-24 border-2 border-yellow-400/20 rounded-full"
+          className="absolute bottom-10 left-10 w-24 h-24 border-2 border-cyan-500/20 rounded-full"
           animate={{ rotate: -360, scale: [1, 1.2, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
@@ -90,7 +90,7 @@ const HomePage = ({ data }) => {
             }}
             className="inline-block"
           >
-            <Wand2 className="w-20 h-20 text-amber-500 mx-auto drop-shadow-lg" />
+            <Wand2 className="w-20 h-20 text-purple-400 mx-auto drop-shadow-lg" />
           </motion.div>
           
           {/* Chispas alrededor de la varita */}
@@ -120,7 +120,7 @@ const HomePage = ({ data }) => {
         {/* Saludo mágico */}
         <motion.div variants={itemVariants} className="mb-6">
           <motion.p
-            className="text-amber-600 text-xl font-semibold mb-2"
+            className="text-purple-400 text-xl font-semibold mb-2"
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
@@ -131,10 +131,9 @@ const HomePage = ({ data }) => {
         {/* Nombre principal */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl md:text-7xl font-bold text-amber-900 mb-4 font-serif relative"
-          style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.3)' }}
+          className="text-5xl md:text-7xl font-bold mb-4 font-serif relative text-shadow"
         >
-          <span className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
             {personal?.name || "Tu Nombre "}
           </span>
           
@@ -154,7 +153,7 @@ const HomePage = ({ data }) => {
         {/* Título/Posición */}
         <motion.h2
           variants={itemVariants}
-          className="text-2xl md:text-3xl text-amber-700 mb-6 font-serif italic"
+          className="text-2xl md:text-3xl text-slate-300 mb-6 font-serif italic"
         >
           {personal?.title || "Mago del Desarrollo Full Stack"}
         </motion.h2>
@@ -162,7 +161,7 @@ const HomePage = ({ data }) => {
         {/* Descripción */}
         <motion.p
           variants={itemVariants}
-          className="text-lg text-amber-800 mb-8 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed"
         >
           {personal?.description || 
            "Conjuro aplicaciones web modernas con la magia de React.js, Next.js y Node.js. " +
@@ -175,48 +174,52 @@ const HomePage = ({ data }) => {
           variants={itemVariants}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8"
         >
-          <div className="bg-white/30 backdrop-blur-sm p-4 rounded-lg border border-amber-300">
+          <div className="backdrop-blur-sm p-4 rounded-lg border border-purple-500/30"
+               style={{ background: 'rgba(30, 30, 30, 0.8)' }}>
             <motion.div
-              className="text-3xl font-bold text-amber-800 mb-1"
+              className="text-3xl font-bold text-slate-200 mb-1"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               {stats?.experience || "4+"}
             </motion.div>
-            <p className="text-amber-700 text-sm font-semibold">Años de Experiencia</p>
+            <p className="text-slate-400 text-sm font-semibold">Años de Experiencia</p>
           </div>
 
-          <div className="bg-white/30 backdrop-blur-sm p-4 rounded-lg border border-amber-300">
+          <div className="backdrop-blur-sm p-4 rounded-lg border border-purple-500/30"
+               style={{ background: 'rgba(30, 30, 30, 0.8)' }}>
             <motion.div
-              className="text-3xl font-bold text-amber-800 mb-1"
+              className="text-3xl font-bold text-slate-200 mb-1"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
             >
               {stats?.projects || "25+"}
             </motion.div>
-            <p className="text-amber-700 text-sm font-semibold">Proyectos Creados</p>
+            <p className="text-slate-400 text-sm font-semibold">Proyectos Creados</p>
           </div>
 
-          <div className="bg-white/30 backdrop-blur-sm p-4 rounded-lg border border-amber-300">
+          <div className="backdrop-blur-sm p-4 rounded-lg border border-purple-500/30"
+               style={{ background: 'rgba(30, 30, 30, 0.8)' }}>
             <motion.div
-              className="text-3xl font-bold text-amber-800 mb-1"
+              className="text-3xl font-bold text-slate-200 mb-1"
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, delay: 1, repeat: Infinity }}
             >
               {stats?.clients || "15+"}
             </motion.div>
-            <p className="text-amber-700 text-sm font-semibold">Clientes Satisfechos</p>
+            <p className="text-slate-400 text-sm font-semibold">Clientes Satisfechos</p>
           </div>
 
-          <div className="bg-white/30 backdrop-blur-sm p-4 rounded-lg border border-amber-300">
+          <div className="backdrop-blur-sm p-4 rounded-lg border border-purple-500/30"
+               style={{ background: 'rgba(30, 30, 30, 0.8)' }}>
             <motion.div
-              className="text-3xl font-bold text-amber-800 mb-1 flex items-center justify-center"
+              className="text-3xl font-bold text-slate-200 mb-1 flex items-center justify-center"
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <Coffee className="w-8 h-8" />
             </motion.div>
-            <p className="text-amber-700 text-sm font-semibold">Tazas de Café</p>
+            <p className="text-slate-400 text-sm font-semibold">Tazas de Café</p>
           </div>
         </motion.div>
 
@@ -228,13 +231,17 @@ const HomePage = ({ data }) => {
           {techIcons.map((tech, index) => (
             <motion.div
               key={tech.name}
-              className="flex items-center space-x-2 bg-white/40 backdrop-blur-sm px-4 py-3 
-                         rounded-full shadow-lg border border-amber-300 hover:shadow-xl 
+              className="flex items-center space-x-2 backdrop-blur-sm px-4 py-3 
+                         rounded-full shadow-lg border border-slate-700 hover:shadow-xl 
                          transition-all duration-300"
+              style={{ 
+                background: 'rgba(40, 40, 40, 0.8)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
+              }}
               whileHover={{ 
                 scale: 1.05, 
                 y: -5,
-                boxShadow: "0 10px 25px rgba(212, 175, 55, 0.3)"
+                boxShadow: "0 10px 25px rgba(147, 51, 234, 0.3)"
               }}
               whileTap={{ scale: 0.95 }}
               animate={{
@@ -249,7 +256,7 @@ const HomePage = ({ data }) => {
               }}
             >
               <tech.icon className={`w-6 h-6 ${tech.color}`} />
-              <span className="text-amber-800 font-semibold">{tech.name}</span>
+              <span className="text-slate-300 font-semibold">{tech.name}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -263,27 +270,27 @@ const HomePage = ({ data }) => {
             className="magic-button flex items-center space-x-2 group"
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 10px 30px rgba(212, 175, 55, 0.4)"
+              boxShadow: "0 10px 30px rgba(147, 51, 234, 0.4)"
             }}
             whileTap={{ scale: 0.95 }}
           >
             <Download className="w-5 h-5 group-hover:animate-bounce" />
-            <span>Descargar CV </span>
+            <span>Descargar CV</span>
             <Sparkles className="w-4 h-4 group-hover:animate-spin" />
           </motion.button>
 
           <motion.button
-            className="px-6 py-3 bg-transparent border-2 border-amber-500 text-amber-700 
-                     font-semibold rounded-lg hover:bg-amber-500 hover:text-white 
+            className="px-6 py-3 bg-transparent border-2 border-purple-500 text-slate-300 
+                     font-semibold rounded-lg hover:bg-purple-500 hover:text-white 
                      transition-all duration-300 flex items-center space-x-2 group"
             whileHover={{ 
               scale: 1.05,
-              borderColor: "#FFBF00"
+              borderColor: "#9333ea"
             }}
             whileTap={{ scale: 0.95 }}
           >
             <Star className="w-5 h-5 group-hover:animate-spin" />
-            <span>Ver Hechizos</span>
+            <span>Ver Proyectos</span>
             <ArrowDown className="w-4 h-4 group-hover:animate-bounce" />
           </motion.button>
         </motion.div>
@@ -294,7 +301,7 @@ const HomePage = ({ data }) => {
           className="mt-12 text-center"
         >
           <motion.p
-            className="text-amber-600 font-medium"
+            className="text-slate-400 font-medium"
             animate={{ 
               opacity: [0.6, 1, 0.6],
               y: [0, -5, 0]
@@ -358,7 +365,7 @@ const HomePage = ({ data }) => {
               ease: "easeInOut"
             }}
           >
-            <Sparkles className="w-full h-full text-amber-400" />
+            <Sparkles className="w-full h-full text-purple-400" />
           </motion.div>
         ))}
       </div>
@@ -377,7 +384,7 @@ const HomePage = ({ data }) => {
           ease: "easeInOut"
         }}
       >
-        <div className="w-96 h-96 border border-amber-400/20 rounded-full" />
+        <div className="w-96 h-96 border border-purple-500/20 rounded-full" />
       </motion.div>
 
       <motion.div
@@ -394,7 +401,7 @@ const HomePage = ({ data }) => {
           ease: "easeInOut"
         }}
       >
-        <div className="w-64 h-64 border border-yellow-400/20 rounded-full" />
+        <div className="w-64 h-64 border border-cyan-400/20 rounded-full" />
       </motion.div>
     </div>
   );

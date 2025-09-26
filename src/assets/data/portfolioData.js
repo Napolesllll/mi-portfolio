@@ -1,54 +1,121 @@
-// Datos centralizados del portafolio
-export const portfolioData = {
-  // Información personal
+const portfolioData = {
   personal: {
-    name: "Tu Nombre Completo",
-    title: "Mago del Desarrollo Full Stack",
-    subtitle: "Especialista en React.js, Next.js y Node.js",
-    description: "Desarrollador apasionado por crear experiencias web mágicas y funcionales. Con experiencia en tecnologías modernas y enfoque en la excelencia técnica.",
-    location: "Medellin - Colombia",
-    email: "tu@email.com",
-    phone: "+1 234 567 8900",
-    website: "https://tu-portfolio.com",
-    avatar: "/images/profile/avatar.jpg",
-    resume: "/docs/tu-cv.pdf"
+    name: "Jhon Cano",
+    title: "Desarrollador Full Stack",
+    description: "Especializado en crear experiencias web extraordinarias con React, Next.js y Node.js",
+    location: "Medellín, Colombia",
+    email: "jhon@example.com",
+    phone: "+57 123 456 7890",
+    website: "https://jhon-portfolio.com",
+    resume: "https://example.com/cv.pdf"
   },
-
-  // Enlaces sociales
   social: {
-    github: "https://github.com/tu-usuario",
-    linkedin: "https://linkedin.com/in/tu-perfil",
-    twitter: "https://twitter.com/tu-usuario",
-    instagram: "https://instagram.com/tu-usuario",
-    youtube: "https://youtube.com/@tu-canal",
-    medium: "https://medium.com/@tu-usuario",
-    portfolio: "https://tu-portfolio.com"
+    github: "https://github.com/jhoncano",
+    linkedin: "https://linkedin.com/in/jhoncano",
+    twitter: "https://twitter.com/jhoncano"
   },
+  stats: {
+    experience: "4+",
+    projects: "25+",
+    clients: "15+"
+  },
+  skills: [
+    "React.js",
+    "Next.js", 
+    "Node.js",
+    "TypeScript",
+    "PostgreSQL",
+    "MongoDB",
+    "AWS",
+    "Docker"
+  ],
+  experience: [
+    {
+      id: 1,
+      title: "Senior Full Stack Developer",
+      company: "Tech Company",
+      location: "Remote",
+      period: "2022 - Presente",
+      duration: "2 años",
+      description: "Desarrollo de aplicaciones web modernas con React, Next y Node.js",
+      achievements: [
+        "Mejora del 40% en el rendimiento de aplicaciones",
+        "Implementación de arquitectura escalable",
+        "Liderazgo de equipo de 5 desarrolladores"
+      ],
+      technologies: ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL"]
+    }
+  ],
+  education: [
+    {
+      id: 1,
+      degree: "Ingeniería en Sistemas",
+      institution: "Universidad Tecnológica",
+      location: "Medellín, Colombia",
+      period: "2016 - 2020",
+      description: "Especialización en desarrollo de software y bases de datos"
+    }
+  ],
+  certifications: [
+    {
+      id: 1,
+      name: "AWS Solutions Architect",
+      issuer: "Amazon Web Services",
+      date: "2023"
+    }
+  ],
+  projects: [
+    {
+      id: 1,
+      title: "Mascoticas",
+      subtitle: "E-commerce para Mascotas en Bucaramanga y Medellín",
+      category: "Full Stack",
+      description: "Tienda online especializada en productos para mascotas con presencia en Bucaramanga y Medellín.",
+      longDescription: "Plataforma completa de e-commerce con gestión de inventario, carrito de compras y pasarelas de pago.",
+      technologies: ["Next.js", "Node.js"],
+      features: [
+        "🛒 Carrito de compras avanzado",
+        "💰 Pasarelas de pago integradas",
+        "📱 Diseño responsive completo",
+        "🔍 Sistema de búsqueda y filtros"
+      ],
+      highlights: [
+        "Aumentó ventas online en 40%",
+        "Optimizado para conversión móvil",
+        "Tiempo de carga menor a 2 segundos"
+      ],
+      demoUrl: "https://mascoticasbucaramangamedellin.com/",
+      githubUrl: "#",
+      duration: "1 mes",
+      team: "Full Stack Developer",
+      status: "Completado"
+    },
+    {
+      id: 2,
+      title: "Explore Heaven",
+      subtitle: "Plataforma de Descubrimiento de Viajes",
+      category: "Frontend",
+      description: "Aplicación web moderna para explorar destinos turísticos alrededor del mundo.",
+      longDescription: "Plataforma innovadora con búsquedas inteligentes, recomendaciones personalizadas y herramientas para planificar viajes.",
+      technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "API REST"],
+      features: [
+        "🌍 Exploración de destinos globales",
+        "📸 Galerías de imágenes interactivas",
+        "🔍 Búsqueda inteligente y filtros",
+        "💾 Sistema de favoritos"
+      ],
+      highlights: [
+        "Deploy en Vercel con excelente performance",
+        "Interfaz galardonada por usabilidad",
+        "Tasa de engagement del 75%"
+      ],
+      demoUrl: "https://explore-heaven.vercel.app/",
+      githubUrl: "#",
+      duration: "2 meses",
+      team: "Frontend Developer",
+      status: "Completado"
+    }
+  ]
+};
 
-  // Habilidades técnicas organizadas por categorías
-  skills: {
-    frontend: [
-      {
-        name: "React.js",
-        level: 95,
-        icon: "⚛️",
-        description: "Desarrollo de aplicaciones web modernas con hooks, context API y patrones avanzados",
-        experience: "3+ años",
-        projects: ["E-commerce Platform", "Dashboard Analytics", "Social Media App"]
-      },
-      {
-        name: "Next.js",
-        level: 90,
-        icon: "🚀",
-        description: "SSR, SSG, API routes y optimización de rendimiento",
-        experience: "2+ años",
-        projects: ["Corporate Website", "Blog Platform", "E-learning Platform"]
-      },
-        {
-        name: "Node.js",
-        level: 85,
-        icon: "🟢",
-        description: "Desarrollo de aplicaciones backend con Express y bases de datos NoSQL",
-        experience: "2+ años",
-        projects: ["API RESTful", "Chat Application", "E-commerce Backend"]
-      },  ]}}
+export default portfolioData;

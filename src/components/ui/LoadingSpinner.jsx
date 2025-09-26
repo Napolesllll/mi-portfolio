@@ -223,7 +223,7 @@ const LoadingSpinner = () => {
           }}
           transition={{ duration: 3, repeat: Infinity }}
         >
-          ✨ Cargando hechizos de desarrollo full-stack ✨
+          ✨ Cargando Proyectos de desarrollo full-stack ✨
         </motion.p>
       </div>
 

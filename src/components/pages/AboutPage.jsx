@@ -51,7 +51,7 @@ const AboutPage = ({ data }) => {
     return (
       <div className="relative">
         {/* Línea vertical */}
-        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-amber-400"></div>
+        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-purple-500"></div>
         
         <div className="space-y-8">
           {experiences?.map((exp, index) => (
@@ -65,13 +65,13 @@ const AboutPage = ({ data }) => {
               {/* Punto en la línea */}
               <div className="relative z-10">
                 <motion.div
-                  className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center"
+                  className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center border-2 border-purple-400"
                   whileHover={{ scale: 1.2 }}
                   animate={{ 
                     boxShadow: [
-                      "0 0 0 0 rgba(245, 158, 11, 0.4)",
-                      "0 0 0 10px rgba(245, 158, 11, 0)",
-                      "0 0 0 0 rgba(245, 158, 11, 0)"
+                      "0 0 0 0 rgba(147, 51, 234, 0.4)",
+                      "0 0 0 10px rgba(147, 51, 234, 0)",
+                      "0 0 0 0 rgba(147, 51, 234, 0)"
                     ]
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -81,25 +81,29 @@ const AboutPage = ({ data }) => {
               </div>
 
               {/* Contenido */}
-              <div className="flex-1 bg-white/40 backdrop-blur-sm p-6 rounded-lg 
-                             border border-amber-300 hover:border-amber-500 
-                             hover:shadow-lg transition-all duration-300">
+              <div className="flex-1 backdrop-blur-sm p-6 rounded-lg 
+                             border border-slate-700 hover:border-purple-500/50 
+                             hover:shadow-lg transition-all duration-300"
+                   style={{
+                     background: 'rgba(40, 40, 40, 0.8)',
+                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+                   }}>
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h3 className="text-lg font-bold text-amber-900">{exp.title}</h3>
-                    <p className="text-amber-700 font-semibold">{exp.company}</p>
-                    <p className="text-amber-600 text-sm flex items-center">
+                    <h3 className="text-lg font-bold text-slate-100">{exp.title}</h3>
+                    <p className="text-slate-300 font-semibold">{exp.company}</p>
+                    <p className="text-slate-400 text-sm flex items-center">
                       <MapPin className="w-3 h-3 mr-1" />
                       {exp.location}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-amber-800 font-semibold text-sm">{exp.period}</p>
-                    <p className="text-amber-600 text-xs">{exp.duration}</p>
+                    <p className="text-slate-200 font-semibold text-sm">{exp.period}</p>
+                    <p className="text-slate-400 text-xs">{exp.duration}</p>
                   </div>
                 </div>
 
-                <p className="text-amber-700 mb-4">{exp.description}</p>
+                <p className="text-slate-300 mb-4">{exp.description}</p>
 
                 {/* Logros */}
                 <div className="space-y-2 mb-4">
@@ -111,8 +115,8 @@ const AboutPage = ({ data }) => {
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.1 * i }}
                     >
-                      <Star className="w-3 h-3 text-amber-500 mt-1 flex-shrink-0" />
-                      <span className="text-amber-700">{achievement}</span>
+                      <Star className="w-3 h-3 text-purple-400 mt-1 flex-shrink-0" />
+                      <span className="text-slate-300">{achievement}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -122,7 +126,7 @@ const AboutPage = ({ data }) => {
                   {exp.technologies?.map((tech, i) => (
                     <span
                       key={i}
-                      className="bg-amber-200 text-amber-800 px-2 py-1 rounded text-xs font-medium"
+                      className="badge-tech"
                     >
                       {tech}
                     </span>
@@ -139,22 +143,26 @@ const AboutPage = ({ data }) => {
   // Educación y certificaciones
   const EducationCard = ({ edu }) => (
     <motion.div
-      className="bg-white/40 backdrop-blur-sm p-6 rounded-lg border border-amber-300 
-                 hover:border-amber-500 hover:shadow-lg transition-all duration-300"
+      className="backdrop-blur-sm p-6 rounded-lg border border-slate-700 
+                 hover:border-purple-500/50 hover:shadow-lg transition-all duration-300"
+      style={{
+        background: 'rgba(40, 40, 40, 0.8)',
+        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+      }}
       whileHover={{ y: -5 }}
     >
       <div className="flex items-start space-x-4">
         <motion.div
           whileHover={{ rotate: 12, scale: 1.1 }}
-          className="text-amber-600"
+          className="text-purple-400"
         >
           <GraduationCap className="w-8 h-8" />
         </motion.div>
         
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-amber-900 mb-1">{edu.degree}</h3>
-          <p className="text-amber-700 font-semibold mb-1">{edu.institution}</p>
-          <div className="flex items-center space-x-4 text-sm text-amber-600 mb-3">
+          <h3 className="text-lg font-bold text-slate-100 mb-1">{edu.degree}</h3>
+          <p className="text-slate-300 font-semibold mb-1">{edu.institution}</p>
+          <div className="flex items-center space-x-4 text-sm text-slate-400 mb-3">
             <div className="flex items-center space-x-1">
               <Calendar className="w-3 h-3" />
               <span>{edu.period}</span>
@@ -165,14 +173,14 @@ const AboutPage = ({ data }) => {
             </div>
           </div>
           
-          <p className="text-amber-700 text-sm mb-3">{edu.description}</p>
+          <p className="text-slate-300 text-sm mb-3">{edu.description}</p>
           
           {edu.relevantCourses && (
             <div>
-              <p className="text-xs font-semibold text-amber-800 mb-2">Materias Relevantes:</p>
+              <p className="text-xs font-semibold text-slate-300 mb-2">Materias Relevantes:</p>
               <div className="flex flex-wrap gap-1">
                 {edu.relevantCourses.map((course, i) => (
-                  <span key={i} className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">
+                  <span key={i} className="bg-blue-900/50 text-blue-300 px-2 py-1 rounded text-xs border border-blue-600/30">
                     {course}
                   </span>
                 ))}
@@ -200,13 +208,13 @@ const AboutPage = ({ data }) => {
           }}
           transition={{ duration: 4, repeat: Infinity }}
         >
-          <User className="w-16 h-16 text-amber-600 mx-auto" />
+          <User className="w-16 h-16 text-purple-400 mx-auto" />
         </motion.div>
         
-        <h2 className="text-4xl font-bold text-amber-900 mb-4 font-serif">
-          Acerca de mi 
+        <h2 className="text-4xl font-bold text-slate-100 mb-4 font-serif">
+          Acerca de mí 
         </h2>
-        <p className="text-lg text-amber-700 max-w-2xl mx-auto">
+        <p className="text-lg text-slate-300 max-w-2xl mx-auto">
           Descubre el viaje detrás del código, las experiencias que han moldeado 
           mi pasión por el desarrollo y la visión que guía cada proyecto.
         </p>
@@ -223,13 +231,17 @@ const AboutPage = ({ data }) => {
         >
           {/* Información personal */}
           <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
-            <div className="bg-white/40 backdrop-blur-sm p-6 rounded-lg border border-amber-300">
-              <h3 className="text-2xl font-bold text-amber-900 mb-4 flex items-center">
-                <Heart className="w-6 h-6 mr-3 text-amber-600" />
+            <div className="backdrop-blur-sm p-6 rounded-lg border border-slate-700"
+                 style={{
+                   background: 'rgba(40, 40, 40, 0.8)',
+                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+                 }}>
+              <h3 className="text-2xl font-bold text-slate-100 mb-4 flex items-center">
+                <Heart className="w-6 h-6 mr-3 text-purple-400" />
                 Acerca de Mí
               </h3>
               
-              <div className="space-y-4 text-amber-700">
+              <div className="space-y-4 text-slate-300">
                 <p>
                   ¡Hola! Soy un desarrollador apasionado por crear experiencias web extraordinarias. 
                   Mi viaje en el mundo del desarrollo comenzó hace más de 4 años, y desde entonces 
@@ -237,8 +249,8 @@ const AboutPage = ({ data }) => {
                 </p>
                 
                 <p>
-                  Me especializo en tecnologías modernas como <strong>React.js</strong>, <strong>Next.js</strong>, 
-                  y <strong>Node.js</strong>, siempre con un enfoque en escribir código limpio, 
+                  Me especializo en tecnologías modernas como <strong className="text-purple-300">React.js</strong>, <strong className="text-purple-300">Next.js</strong>, 
+                  y <strong className="text-purple-300">Node.js</strong>, siempre con un enfoque en escribir código limpio, 
                   mantenible y escalable. Creo firmemente que la tecnología debe servir a las personas, 
                   no al revés.
                 </p>
@@ -252,61 +264,65 @@ const AboutPage = ({ data }) => {
             </div>
 
             {/* Valores y filosofía */}
-            <div className="bg-white/40 backdrop-blur-sm p-6 rounded-lg border border-amber-300">
-              <h3 className="text-2xl font-bold text-amber-900 mb-4 flex items-center">
-                <Target className="w-6 h-6 mr-3 text-amber-600" />
+            <div className="backdrop-blur-sm p-6 rounded-lg border border-slate-700"
+                 style={{
+                   background: 'rgba(40, 40, 40, 0.8)',
+                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+                 }}>
+              <h3 className="text-2xl font-bold text-slate-100 mb-4 flex items-center">
+                <Target className="w-6 h-6 mr-3 text-purple-400" />
                 Mi Filosofía de Desarrollo
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <motion.div
-                  className="p-4 bg-amber-50 rounded-lg"
+                  className="p-4 bg-slate-800/50 rounded-lg border border-slate-700"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-2">
-                    <Code className="w-5 h-5 text-amber-600 mr-2" />
-                    <h4 className="font-semibold text-amber-800">Código Limpio</h4>
+                    <Code className="w-5 h-5 text-purple-400 mr-2" />
+                    <h4 className="font-semibold text-slate-200">Código Limpio</h4>
                   </div>
-                  <p className="text-amber-700 text-sm">
+                  <p className="text-slate-400 text-sm">
                     Escribo código que otros desarrolladores puedan entender y mantener fácilmente.
                   </p>
                 </motion.div>
 
                 <motion.div
-                  className="p-4 bg-amber-50 rounded-lg"
+                  className="p-4 bg-slate-800/50 rounded-lg border border-slate-700"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-2">
-                    <Zap className="w-5 h-5 text-amber-600 mr-2" />
-                    <h4 className="font-semibold text-amber-800">Performance</h4>
+                    <Zap className="w-5 h-5 text-purple-400 mr-2" />
+                    <h4 className="font-semibold text-slate-200">Performance</h4>
                   </div>
-                  <p className="text-amber-700 text-sm">
+                  <p className="text-slate-400 text-sm">
                     Optimizo cada línea de código para ofrecer experiencias rápidas y fluidas.
                   </p>
                 </motion.div>
 
                 <motion.div
-                  className="p-4 bg-amber-50 rounded-lg"
+                  className="p-4 bg-slate-800/50 rounded-lg border border-slate-700"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-2">
-                    <Heart className="w-5 h-5 text-amber-600 mr-2" />
-                    <h4 className="font-semibold text-amber-800">User-Centric</h4>
+                    <Heart className="w-5 h-5 text-purple-400 mr-2" />
+                    <h4 className="font-semibold text-slate-200">User-Centric</h4>
                   </div>
-                  <p className="text-amber-700 text-sm">
+                  <p className="text-slate-400 text-sm">
                     El usuario siempre está en el centro de cada decisión de desarrollo.
                   </p>
                 </motion.div>
 
                 <motion.div
-                  className="p-4 bg-amber-50 rounded-lg"
+                  className="p-4 bg-slate-800/50 rounded-lg border border-slate-700"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-2">
-                    <BookOpen className="w-5 h-5 text-amber-600 mr-2" />
-                    <h4 className="font-semibold text-amber-800">Aprendizaje</h4>
+                    <BookOpen className="w-5 h-5 text-purple-400 mr-2" />
+                    <h4 className="font-semibold text-slate-200">Aprendizaje</h4>
                   </div>
-                  <p className="text-amber-700 text-sm">
+                  <p className="text-slate-400 text-sm">
                     Me mantengo actualizado con las últimas tendencias y mejores prácticas.
                   </p>
                 </motion.div>
@@ -317,38 +333,41 @@ const AboutPage = ({ data }) => {
           {/* Estadísticas y datos rápidos */}
           <motion.div variants={itemVariants} className="space-y-6">
             {/* Estadísticas */}
-            <div className="bg-gradient-to-br from-amber-500/20 to-yellow-500/20 
-                           backdrop-blur-sm p-6 rounded-lg border border-amber-300">
-              <h3 className="text-xl font-bold text-amber-900 mb-4 text-center">
+            <div className="backdrop-blur-sm p-6 rounded-lg border border-purple-500/30"
+                 style={{
+                   background: 'rgba(30, 30, 30, 0.8)',
+                   boxShadow: '0 8px 32px rgba(147, 51, 234, 0.3)'
+                 }}>
+              <h3 className="text-xl font-bold text-slate-100 mb-4 text-center">
                 📊 En Números
               </h3>
               
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-amber-700">Experiencia</span>
-                  <span className="text-2xl font-bold text-amber-800">
+                  <span className="text-slate-300">Experiencia</span>
+                  <span className="text-2xl font-bold text-slate-200">
                     {stats?.experience || '4+'} años
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center">
-                  <span className="text-amber-700">Proyectos</span>
-                  <span className="text-2xl font-bold text-amber-800">
+                  <span className="text-slate-300">Proyectos</span>
+                  <span className="text-2xl font-bold text-slate-200">
                     {stats?.projects || '25+'}
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center">
-                  <span className="text-amber-700">Clientes Felices</span>
-                  <span className="text-2xl font-bold text-amber-800">
+                  <span className="text-slate-300">Clientes Felices</span>
+                  <span className="text-2xl font-bold text-slate-200">
                     {stats?.clients || '15+'}
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center">
-                  <span className="text-amber-700">Tazas de Café</span>
+                  <span className="text-slate-300">Tazas de Café</span>
                   <motion.span
-                    className="text-2xl font-bold text-amber-800 flex items-center"
+                    className="text-2xl font-bold text-slate-200 flex items-center"
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
@@ -359,30 +378,34 @@ const AboutPage = ({ data }) => {
             </div>
 
             {/* Datos rápidos */}
-            <div className="bg-white/40 backdrop-blur-sm p-6 rounded-lg border border-amber-300">
-              <h3 className="text-xl font-bold text-amber-900 mb-4">⚡ Datos Rápidos</h3>
+            <div className="backdrop-blur-sm p-6 rounded-lg border border-slate-700"
+                 style={{
+                   background: 'rgba(40, 40, 40, 0.8)',
+                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+                 }}>
+              <h3 className="text-xl font-bold text-slate-100 mb-4">⚡ Datos Rápidos</h3>
               
               <div className="space-y-3 text-sm">
                 <div className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4 text-amber-600" />
-                  <span className="text-amber-700">
-                    {personal?.location || ' Medellin, Colombia'}
+                  <MapPin className="w-4 h-4 text-purple-400" />
+                  <span className="text-slate-300">
+                    {personal?.location || 'Medellín, Colombia'}
                   </span>
                 </div>
                 
                 <div className="flex items-center space-x-2">
-                  <Code className="w-4 h-4 text-amber-600" />
-                  <span className="text-amber-700">Lenguaje favorito: JavaScript</span>
+                  <Code className="w-4 h-4 text-purple-400" />
+                  <span className="text-slate-300">Lenguaje favorito: JavaScript</span>
                 </div>
                 
                 <div className="flex items-center space-x-2">
-                  <Coffee className="w-4 h-4 text-amber-600" />
-                  <span className="text-amber-700">Combustible: Café ☕</span>
+                  <Coffee className="w-4 h-4 text-purple-400" />
+                  <span className="text-slate-300">Combustible: Café ☕</span>
                 </div>
                 
                 <div className="flex items-center space-x-2">
-                  <Star className="w-4 h-4 text-amber-600" />
-                  <span className="text-amber-700">Hobby: Contribuir a OSS</span>
+                  <Star className="w-4 h-4 text-purple-400" />
+                  <span className="text-slate-300">Hobby: Contribuir a OSS</span>
                 </div>
               </div>
             </div>
@@ -390,7 +413,7 @@ const AboutPage = ({ data }) => {
             {/* Botón de CV */}
             <motion.button
               onClick={() => window.open(personal?.resume, '_blank')}
-              className="w-full magic-button flex items-center justify-center space-x-2"
+              className="magic-button w-full flex items-center justify-center space-x-2"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -406,8 +429,8 @@ const AboutPage = ({ data }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h3 className="text-3xl font-bold text-amber-900 mb-8 text-center flex items-center justify-center">
-            <Briefcase className="w-8 h-8 mr-3 text-amber-600" />
+          <h3 className="text-3xl font-bold text-slate-100 mb-8 text-center flex items-center justify-center">
+            <Briefcase className="w-8 h-8 mr-3 text-purple-400" />
             Experiencia Profesional
           </h3>
           
@@ -420,8 +443,8 @@ const AboutPage = ({ data }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <h3 className="text-3xl font-bold text-amber-900 mb-8 text-center flex items-center justify-center">
-            <GraduationCap className="w-8 h-8 mr-3 text-amber-600" />
+          <h3 className="text-3xl font-bold text-slate-100 mb-8 text-center flex items-center justify-center">
+            <GraduationCap className="w-8 h-8 mr-3 text-purple-400" />
             Formación Académica
           </h3>
           
@@ -439,8 +462,8 @@ const AboutPage = ({ data }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <h3 className="text-3xl font-bold text-amber-900 mb-8 text-center flex items-center justify-center">
-              <Award className="w-8 h-8 mr-3 text-amber-600" />
+            <h3 className="text-3xl font-bold text-slate-100 mb-8 text-center flex items-center justify-center">
+              <Award className="w-8 h-8 mr-3 text-purple-400" />
               Certificaciones
             </h3>
             
@@ -448,15 +471,19 @@ const AboutPage = ({ data }) => {
               {certifications.map((cert) => (
                 <motion.div
                   key={cert.id}
-                  className="bg-white/40 backdrop-blur-sm p-6 rounded-lg border border-amber-300 
-                           hover:border-amber-500 hover:shadow-lg transition-all duration-300 
+                  className="backdrop-blur-sm p-6 rounded-lg border border-slate-700 
+                           hover:border-purple-500/50 hover:shadow-lg transition-all duration-300 
                            text-center"
+                  style={{
+                    background: 'rgba(40, 40, 40, 0.8)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.3)'
+                  }}
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
-                  <Trophy className="w-12 h-12 text-amber-600 mx-auto mb-4" />
-                  <h4 className="font-bold text-amber-900 mb-2">{cert.name}</h4>
-                  <p className="text-amber-700 font-semibold text-sm mb-2">{cert.issuer}</p>
-                  <p className="text-amber-600 text-xs">{cert.date}</p>
+                  <Trophy className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                  <h4 className="font-bold text-slate-100 mb-2">{cert.name}</h4>
+                  <p className="text-slate-300 font-semibold text-sm mb-2">{cert.issuer}</p>
+                  <p className="text-slate-400 text-xs">{cert.date}</p>
                 </motion.div>
               ))}
             </div>
@@ -471,7 +498,7 @@ const AboutPage = ({ data }) => {
           className="text-center py-8"
         >
           <motion.p
-            className="text-xl text-amber-600 font-medium italic mb-4"
+            className="text-xl text-purple-400 font-medium italic mb-4"
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
@@ -492,7 +519,7 @@ const AboutPage = ({ data }) => {
                   repeat: Infinity 
                 }}
               >
-                <Star className="w-5 h-5 text-amber-400" />
+                <Star className="w-5 h-5 text-purple-400" />
               </motion.div>
             ))}
           </div>
