@@ -1,52 +1,56 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 
 const useBookNavigation = (pages, getAnimationConfig) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipDirection, setFlipDirection] = useState('next');
 
-  const nextPage = useCallback(() => {
-    if (currentPage < pages.length - 1 && !isFlipping) {
-      setFlipDirection('next');
+  // Memoizamos configuración para no recalcular en cada acción
+  const animationConfig = useMemo(() => getAnimationConfig(), [getAnimationConfig]);
+
+  // Función interna genérica para manejar cambio de página
+  const handleFlip = useCallback(
+    (targetPage, direction) => {
+      if (isFlipping || targetPage < 0 || targetPage >= pages.length) return;
+
+      setFlipDirection(direction);
       setIsFlipping(true);
-      
-      const config = getAnimationConfig();
-      setTimeout(() => {
-        setCurrentPage(prev => prev + 1);
-        setTimeout(() => setIsFlipping(false), config.duration * 500);
-      }, config.duration * 500);
-    }
-  }, [currentPage, pages.length, isFlipping, getAnimationConfig]);
+
+      // Duración en ms para mayor claridad
+      const delay = animationConfig.duration * 500;
+
+      // requestAnimationFrame + setTimeout para timing fluido
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          setCurrentPage(targetPage);
+          setTimeout(() => setIsFlipping(false), delay);
+        }, delay);
+      });
+    },
+    [animationConfig.duration, isFlipping, pages.length]
+  );
+
+  const nextPage = useCallback(() => {
+    handleFlip(currentPage + 1, 'next');
+  }, [currentPage, handleFlip]);
 
   const prevPage = useCallback(() => {
-    if (currentPage > 0 && !isFlipping) {
-      setFlipDirection('prev');
-      setIsFlipping(true);
-      
-      const config = getAnimationConfig();
-      setTimeout(() => {
-        setCurrentPage(prev => prev - 1);
-        setTimeout(() => setIsFlipping(false), config.duration * 500);
-      }, config.duration * 500);
-    }
-  }, [currentPage, isFlipping, getAnimationConfig]);
+    handleFlip(currentPage - 1, 'prev');
+  }, [currentPage, handleFlip]);
 
-  const goToPage = useCallback((pageIndex) => {
-    if (pageIndex !== currentPage && !isFlipping) {
-      setFlipDirection(pageIndex > currentPage ? 'next' : 'prev');
-      setIsFlipping(true);
-      
-      const config = getAnimationConfig();
-      setTimeout(() => {
-        setCurrentPage(pageIndex);
-        setTimeout(() => setIsFlipping(false), config.duration * 500);
-      }, config.duration * 500);
-    }
-  }, [currentPage, isFlipping, getAnimationConfig]);
+  const goToPage = useCallback(
+    (pageIndex) => {
+      handleFlip(
+        pageIndex,
+        pageIndex > currentPage ? 'next' : 'prev'
+      );
+    },
+    [currentPage, handleFlip]
+  );
 
-  // Manejo de teclado
-  useEffect(() => {
-    const handleKeyPress = (e) => {
+  // Manejo de teclado optimizado
+  const handleKeyPress = useCallback(
+    (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
         return;
       }
@@ -64,7 +68,7 @@ const useBookNavigation = (pages, getAnimationConfig) => {
         case 'ArrowRight':
         case 'd':
         case 'D':
-        case ' ': // Espacio
+        case ' ':
           nextPage();
           break;
         case 'Home':
@@ -74,29 +78,32 @@ const useBookNavigation = (pages, getAnimationConfig) => {
           goToPage(pages.length - 1);
           break;
         case 'Enter':
-          if (currentPage === 0) {
-            goToPage(pages.length - 1);
-          } else {
-            goToPage(0);
-          }
+          goToPage(currentPage === 0 ? pages.length - 1 : 0);
           break;
         case '1':
         case '2':
         case '3':
         case '4':
-          const pageNum = parseInt(e.key) - 1;
-          if (pageNum >= 0 && pageNum < pages.length) {
-            goToPage(pageNum);
+          {
+            const pageNum = parseInt(e.key) - 1;
+            if (pageNum >= 0 && pageNum < pages.length) {
+              goToPage(pageNum);
+            }
           }
           break;
         default:
           break;
       }
-    };
-    
+    },
+    [currentPage, nextPage, prevPage, goToPage, pages.length]
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !pages?.length) return;
+
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [currentPage, nextPage, prevPage, goToPage, pages.length]);
+  }, [handleKeyPress, pages?.length]);
 
   return {
     currentPage,
@@ -106,7 +113,7 @@ const useBookNavigation = (pages, getAnimationConfig) => {
     prevPage,
     goToPage,
     setCurrentPage,
-    setIsFlipping
+    setIsFlipping,
   };
 };
 

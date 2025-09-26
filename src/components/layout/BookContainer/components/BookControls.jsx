@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
+import ReactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const BookControls = ({
+const BookControlsComponent = ({
   prevPage,
   nextPage,
   currentPage,
@@ -11,95 +12,97 @@ const BookControls = ({
   prefersReducedMotion,
   isMobile
 }) => {
-  if (isMobile) {
-    return (
-      <div className="flex justify-between px-6 mt-6 absolute bottom-4 left-0 right-0">
-        <motion.button
-          onClick={prevPage}
-          disabled={currentPage === 0 || isFlipping}
-          className={`p-3 rounded-full border-2 shadow-lg transition-all duration-300 ${
-            currentPage === 0 || isFlipping
-              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
-              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700 shadow-purple-500/30'
-          }`}
-          whileTap={{ scale: 0.9 }}
-          style={currentPage > 0 && !isFlipping ? {
-            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
-          } : {}}
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </motion.button>
-        
-        <motion.button
-          onClick={nextPage}
-          disabled={currentPage === pages.length - 1 || isFlipping}
-          className={`p-3 rounded-full border-2 shadow-lg transition-all duration-300 ${
-            currentPage === pages.length - 1 || isFlipping
-              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
-              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700 shadow-purple-500/30'
-          }`}
-          whileTap={{ scale: 0.9 }}
-          style={currentPage < pages.length - 1 && !isFlipping ? {
-            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
-          } : {}}
-        >
-          <ChevronRight className="w-5 h-5" />
-        </motion.button>
-      </div>
-    );
-  }
+  // Config animación
+  const animationConfig = useMemo(() => ({
+    scale: prefersReducedMotion ? 1 : 0.95,
+    hover: prefersReducedMotion ? {} : {
+      scale: 1.05,
+      y: -2,
+      transition: { duration: 0.2 }
+    }
+  }), [prefersReducedMotion]);
+
+  // Estilos de botones
+  const getButtonStyles = useMemo(() => (isDisabled) => ({
+    base: `rounded-full border-2 shadow-lg transition-all duration-200 flex items-center justify-center
+      ${
+        isDisabled || isFlipping
+          ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
+          : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700 shadow-purple-500/30'
+      }
+      p-2 sm:p-3 md:p-4`, // responsive paddings
+    style: (!isDisabled && !isFlipping) ? {
+      boxShadow: '0 4px 12px rgba(147, 51, 234, 0.4)'
+    } : {}
+  }), [isFlipping]);
 
   return (
     <>
-      <div className="fixed top-1/2 left-8 transform -translate-y-1/2 z-30">
+      {/* Botón izquierdo */}
+      <div className="
+        fixed 
+        top-1/2 
+        left-1 sm:left-2 md:left-3 lg:left-6
+        transform -translate-y-1/2 z-[9999]
+      ">
         <motion.button
           onClick={prevPage}
           disabled={currentPage === 0 || isFlipping}
-          className={`p-4 rounded-full border-2 shadow-lg transition-all duration-300 ${
-            currentPage === 0 || isFlipping
-              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
-              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700'
-          }`}
-          whileHover={!prefersReducedMotion && currentPage > 0 ? { 
-            scale: 1.1,
-            y: -2,
-            boxShadow: "0 10px 25px rgba(147, 51, 234, 0.5)"
-          } : {}}
-          whileTap={{ scale: 0.95 }}
+          className={getButtonStyles(currentPage === 0).base}
+          style={getButtonStyles(currentPage === 0).style}
+          whileHover={currentPage > 0 && !isFlipping ? animationConfig.hover : {}}
+          whileTap={{ scale: animationConfig.scale }}
           title="Página anterior (← o A)"
-          style={currentPage > 0 && !isFlipping ? {
-            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
-          } : {}}
+          aria-label="Página anterior"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </motion.button>
       </div>
 
-      <div className="fixed top-1/2 right-8 transform -translate-y-1/2 z-30">
+      {/* Botón derecho */}
+      <div className="
+        fixed 
+        top-1/2 
+        right-1 sm:right-2 md:right-3 lg:right-6
+        transform -translate-y-1/2 z-[9999]
+      ">
         <motion.button
           onClick={nextPage}
           disabled={currentPage === pages.length - 1 || isFlipping}
-          className={`p-4 rounded-full border-2 shadow-lg transition-all duration-300 ${
-            currentPage === pages.length - 1 || isFlipping
-              ? 'bg-slate-700/50 text-slate-500 border-slate-600/50 cursor-not-allowed'
-              : 'bg-purple-600 text-white border-purple-500 hover:bg-purple-700'
-          }`}
-          whileHover={!prefersReducedMotion && currentPage < pages.length - 1 ? { 
-            scale: 1.1,
-            y: -2,
-            boxShadow: "0 10px 25px rgba(147, 51, 234, 0.5)"
-          } : {}}
-          whileTap={{ scale: 0.95 }}
+          className={getButtonStyles(currentPage === pages.length - 1).base}
+          style={getButtonStyles(currentPage === pages.length - 1).style}
+          whileHover={currentPage < pages.length - 1 && !isFlipping ? animationConfig.hover : {}}
+          whileTap={{ scale: animationConfig.scale }}
           title="Página siguiente (→ o D)"
-          style={currentPage < pages.length - 1 && !isFlipping ? {
-            boxShadow: '0 4px 15px rgba(147, 51, 234, 0.4)'
-          } : {}}
+          aria-label="Página siguiente"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </motion.button>
+      </div>
+
+      {/* Indicador centrado inferior */}
+      <div className="fixed bottom-2 sm:bottom-3 md:bottom-4 left-1/2 transform -translate-x-1/2 z-[9998]">
+        <div className="
+          flex items-center space-x-2 
+          bg-slate-800/60 backdrop-blur-sm 
+          px-2 sm:px-3 md:px-4 
+          py-1.5 sm:py-2 
+          rounded-full border border-slate-700/50
+        ">
+          <span className="text-slate-300 text-xs sm:text-sm md:text-base font-medium">
+            {currentPage + 1} / {pages.length}
+          </span>
+        </div>
       </div>
     </>
   );
 };
- 
+
+const BookControls = memo((props) => {
+  // Montar en el body para que siempre sea fijo globalmente
+  return ReactDOM.createPortal(<BookControlsComponent {...props} />, document.body);
+});
+
+BookControls.displayName = 'BookControls';
+
 export default BookControls;

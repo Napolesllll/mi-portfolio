@@ -14,6 +14,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #0f0f0f;
   color: #e5e5e5;
+  overscroll-behavior: none; /* Prevenir scroll elástico en móvil */
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
 }
 
 code {
@@ -21,7 +23,7 @@ code {
     monospace;
 }
 
-/* Variables CSS para el tema oscuro */
+/* Variables CSS optimizadas */
 :root {
   /* Colores principales */
   --bg-primary: #0a0a0a;
@@ -30,13 +32,13 @@ code {
   --bg-card: rgba(30, 30, 30, 0.8);
   --bg-glass: rgba(40, 40, 40, 0.3);
   
-  /* Colores de acento dorado/púrpura */
+  /* Colores de acento */
   --accent-gold: #ffd700;
   --accent-purple: #9333ea;
   --accent-cyan: #06b6d4;
   --accent-emerald: #10b981;
   
-  /* Gradientes */
+  /* Gradientes optimizados */
   --gradient-primary: linear-gradient(135deg, #1e1b4b, #581c87, #7c2d12);
   --gradient-secondary: linear-gradient(135deg, #0f172a, #1e293b, #374151);
   --gradient-accent: linear-gradient(135deg, #ffd700, #9333ea);
@@ -47,84 +49,120 @@ code {
   --text-muted: #94a3b8;
   --text-accent: #ffd700;
   
-  /* Bordes y sombras */
-  --border-color: rgba(148, 163, 184, 0.2);
+  /* Sombras optimizadas */
   --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.3);
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos personalizados para el tema mágico oscuro */
+/* Optimizaciones de rendimiento globales */
+* {
+  /* Usar GPU para elementos animados */
+  will-change: auto;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
+/* Transiciones optimizadas */
+*,
+*::before,
+*::after {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Botón mágico optimizado */
 .magic-button {
   @apply bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800;
-  @apply text-white px-6 py-3 rounded-lg font-semibold shadow-lg;
-  @apply transition-all duration-300 transform hover:scale-105;
-  @apply flex items-center space-x-2;
+  @apply text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold shadow-lg;
+  @apply transition-all duration-200 transform;
+  @apply flex items-center justify-center space-x-2;
   box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+  will-change: transform;
 }
 
 .magic-button:hover {
-  box-shadow: 0 10px 25px rgba(147, 51, 234, 0.6);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(147, 51, 234, 0.5);
 }
 
-/* Efectos de cristal oscuros */
+.magic-button:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* Efectos de cristal optimizados */
 .glass-effect {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   background: var(--bg-glass);
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-/* Animación de brillo para tema oscuro */
-@keyframes shimmer-dark {
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
-  }
+/* Animaciones optimizadas */
+@keyframes shimmer-optimized {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
 }
 
 .shimmer {
-  animation: shimmer-dark 2s infinite;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 215, 0, 0.3),
-    transparent
-  );
-  background-size: 468px 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Efectos de partículas doradas */
-.floating-particles::before {
+.shimmer::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
-                    radial-gradient(2px 2px at 40px 70px, #9333ea, transparent),
-                    radial-gradient(1px 1px at 90px 40px, #06b6d4, transparent),
-                    radial-gradient(1px 1px at 130px 80px, #10b981, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: shimmer-optimized 2s infinite;
+}
+
+/* Partículas flotantes optimizadas */
+.floating-particles {
+  position: relative;
+  overflow: hidden;
+}
+
+.floating-particles::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
+    radial-gradient(1px 1px at 40px 70px, #9333ea, transparent);
   background-repeat: repeat;
-  background-size: 150px 100px;
-  animation: float 20s infinite linear;
+  background-size: 100px 50px;
+  animation: float-optimized 15s infinite linear;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.3;
+  will-change: transform;
 }
 
-@keyframes float {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-150px, 0, 0);
-  }
+@keyframes float-optimized {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100px, 0, 0); }
 }
 
-/* Scrollbar personalizado oscuro */
+/* Scrollbar personalizado optimizado */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -141,13 +179,13 @@ code {
   background: linear-gradient(180deg, #ffd700, #9333ea);
 }
 
-/* Utilidades adicionales */
+/* Utilidades responsivas optimizadas */
 .text-shadow {
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .text-glow {
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
 .line-clamp-3 {
@@ -157,39 +195,52 @@ code {
   overflow: hidden;
 }
 
-/* Efectos de hover para cards */
+/* Cards optimizadas */
 .card-hover {
-  transition: all 0.3s ease;
-  border: 1px solid var(--border-color);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
   background: var(--bg-card);
+  will-change: transform;
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-card);
-  border-color: rgba(255, 215, 0, 0.5);
+  border-color: rgba(255, 215, 0, 0.4);
 }
 
-/* Botones secundarios */
+/* Botones secundarios optimizados */
 .btn-secondary {
   @apply bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600;
-  @apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
+  @apply px-3 py-2 md:px-4 md:py-2 rounded-lg font-medium;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, background-color;
 }
 
 .btn-secondary:hover {
-  box-shadow: 0 4px 15px rgba(71, 85, 105, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
 }
 
-/* Inputs oscuros */
+/* Inputs optimizados */
 .input-dark {
   @apply bg-slate-800/50 border-slate-600 text-slate-200 placeholder-slate-400;
-  @apply focus:border-purple-500 focus:ring-purple-500/20;
+  @apply focus:border-purple-500 focus:ring-1 focus:ring-purple-500/20;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Badges y tags */
+/* Badges optimizados */
 .badge-tech {
   @apply bg-slate-700/50 text-slate-300 border border-slate-600/50;
-  @apply px-3 py-1 rounded-full text-sm font-medium;
+  @apply px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium;
+  transition: all 0.2s ease;
+}
+
+.badge-tech:hover {
+  @apply bg-slate-600/70 border-slate-500/70;
+  transform: translateY(-1px);
 }
 
 .badge-status-completed {
@@ -200,21 +251,23 @@ code {
   @apply bg-yellow-500/20 text-yellow-300 border border-yellow-500/30;
 }
 
-/* Efectos de brillo para elementos interactivos */
+/* Efectos de brillo optimizados */
 .glow-on-hover {
-  transition: all 0.3s ease;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
 }
 
 .glow-on-hover:hover {
-  box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
-  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+  transform: scale(1.01);
 }
 
-/* Animaciones de entrada */
-@keyframes fadeInUp {
+/* Animaciones de entrada optimizadas */
+@keyframes fadeInUp-optimized {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -223,15 +276,14 @@ code {
 }
 
 .animate-fadeInUp {
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp-optimized 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Efectos de neón */
+/* Efectos de neón optimizados */
 .neon-text {
   text-shadow: 
-    0 0 5px rgba(255, 215, 0, 0.8),
-    0 0 10px rgba(255, 215, 0, 0.8),
-    0 0 15px rgba(255, 215, 0, 0.8);
+    0 0 4px rgba(255, 215, 0, 0.6),
+    0 0 8px rgba(255, 215, 0, 0.4);
 }
 
 .neon-border {
@@ -241,7 +293,7 @@ code {
   border-radius: 8px;
 }
 
-/* Gradientes de fondo para diferentes secciones */
+/* Gradientes de fondo optimizados */
 .bg-section-primary {
   background: var(--gradient-primary);
 }
@@ -250,39 +302,137 @@ code {
   background: var(--gradient-secondary);
 }
 
-/* Efectos de partículas específicos para diferentes páginas */
-.particles-home::before {
-  background-image: radial-gradient(2px 2px at 25px 35px, #ffd700, transparent),
-                    radial-gradient(2px 2px at 45px 75px, #9333ea, transparent);
-}
-
-.particles-about::before {
-  background-image: radial-gradient(2px 2px at 30px 40px, #06b6d4, transparent),
-                    radial-gradient(2px 2px at 50px 80px, #10b981, transparent);
-}
-
-/* Transiciones suaves para todos los elementos */
-* {
-  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
 /* Estados de focus mejorados */
-button:focus,
-input:focus,
-textarea:focus {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid rgba(147, 51, 234, 0.5);
   outline-offset: 2px;
 }
 
-/* Mejoras de accesibilidad */
-@media (prefers-reduced-motion: reduce) {
-  .shimmer,
-  .floating-particles::before,
-  .animate-fadeInUp {
-    animation: none;
+/* Mejoras responsivas específicas */
+@media (max-width: 640px) {
+  .magic-button {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-2px);
   }
   
   .glow-on-hover:hover {
     transform: none;
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
   }
+  
+  .floating-particles::before {
+    animation-duration: 20s;
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-elevated: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Optimizaciones de accesibilidad y movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .shimmer::after,
+  .floating-particles::before {
+    animation: none !important;
+  }
+  
+  .glow-on-hover:hover,
+  .card-hover:hover,
+  .magic-button:hover {
+    transform: none !important;
+  }
+}
+
+/* Optimizaciones para dispositivos de alto DPI */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .text-shadow {
+    text-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.8);
+  }
+  
+  .neon-text {
+    text-shadow: 
+      0 0 2px rgba(255, 215, 0, 0.6),
+      0 0 4px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Mejoras de rendimiento para pantallas grandes */
+@media (min-width: 1024px) {
+  .card-hover:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+  
+  .magic-button:hover {
+    transform: translateY(-3px) scale(1.03);
+  }
+}
+
+/* Optimizaciones específicas para touch devices */
+@media (pointer: coarse) {
+  .card-hover,
+  .glow-on-hover,
+  .magic-button {
+    transition-duration: 0.15s;
+  }
+  
+  button, .btn-secondary, .magic-button {
+    min-height: 44px; /* Área de toque mínima recomendada */
+    min-width: 44px;
+  }
+}
+
+/* Contenedor principal optimizado */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  will-change: auto;
+}
+
+/* Estilos para elementos con scroll */
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: #9333ea rgba(30, 30, 30, 0.8);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Optimización de imágenes responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contenedores flexibles optimizados */
+.flex-container {
+  display: flex;
+  will-change: auto;
+}
+
+.grid-container {
+  display: grid;
+  will-change: auto;
 }

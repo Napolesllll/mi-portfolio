@@ -1,6 +1,8 @@
-
+import { useMemo } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { Home, User, FolderOpen, Mail } from 'lucide-react';
+
+// Pages
 import HomePage from '../../pages/HomePage';
 import AboutPage from '../../pages/AboutPage';
 import ProjectsPage from '../../pages/ProjectsPage';
@@ -19,38 +21,66 @@ import BookControls from './components/BookControls';
 import PageIndicators from './components/PageIndicators';
 import TransitionOverlay from './components/TransitionOverlay';
 
-// Datos del portfolio - IMPORTAR desde archivo externo
-import portfolioData from '../../../assets/data/portfolioData'; // Ajusta la ruta según tu estructura
+// Datos del portfolio
+import portfolioData from '../../../assets/data/portfolioData';
 
 const BookContainer = () => {
   const prefersReducedMotion = useReducedMotion();
   const isMobile = useMobileDetection();
 
-  // Páginas del libro
-  const pages = [
-    { component: HomePage, title: "Inicio", icon: Home },
-    { component: AboutPage, title: "Acerca", icon: User },
-    { component: ProjectsPage, title: "Proyectos", icon: FolderOpen },
-    { component: ContactPage, title: "Contacto", icon: Mail }
-  ];
+  // Memoizamos las páginas para evitar recrearlas en cada render
+  const pages = useMemo(
+    () => [
+      { component: HomePage, title: 'Inicio', icon: Home },
+      { component: AboutPage, title: 'Acerca', icon: User },
+      { component: ProjectsPage, title: 'Proyectos', icon: FolderOpen },
+      { component: ContactPage, title: 'Contacto', icon: Mail },
+    ],
+    []
+  );
 
   // Hooks personalizados
-  const { getAnimationConfig, pageVariants, mobilePageVariants } = useBookAnimations(isMobile, prefersReducedMotion);
-  const { currentPage, isFlipping, flipDirection, nextPage, prevPage, goToPage } = useBookNavigation(pages, getAnimationConfig);
+  const { getAnimationConfig, pageVariants, mobilePageVariants } = useBookAnimations(
+    isMobile,
+    prefersReducedMotion
+  );
+
+  const {
+    currentPage,
+    isFlipping,
+    flipDirection,
+    nextPage,
+    prevPage,
+    goToPage,
+  } = useBookNavigation(pages, getAnimationConfig);
 
   const CurrentPageComponent = pages[currentPage].component;
 
+  // Cursor personalizado (memoizado)
+  const customCursor = useMemo(
+    () =>
+      'url("data:image/svg+xml;charset=UTF-8,%3csvg width=\'32\' height=\'32\' viewBox=\'0 0 32 32\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3cpath d=\'M4 28L28 4M28 4L24 8M28 4L24 4M28 4L28 8\' stroke=\'%23FFD700\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3e%3cpath d=\'M22 6L26 2M26 10L30 6\' stroke=\'%239333EA\' stroke-width=\'1.5\' stroke-linecap=\'round\'/%3e%3cpath d=\'M20 8L24 4M24 12L28 8\' stroke=\'%2306B6D4\' stroke-width=\'1\' stroke-linecap=\'round\'/%3e%3c/svg%3e") 16 16, auto',
+    []
+  );
+
+  // Background gradient (memoizado)
+  const backgroundGradient = useMemo(
+    () =>
+      'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)',
+    []
+  );
+
   return (
-    <div 
+    <div
       className="min-h-screen relative overflow-hidden"
-      style={{ 
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)',
-        cursor: 'url("data:image/svg+xml;charset=UTF-8,%3csvg width=\'32\' height=\'32\' viewBox=\'0 0 32 32\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3cpath d=\'M4 28L28 4M28 4L24 8M28 4L24 4M28 4L28 8\' stroke=\'%23FFD700\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3e%3cpath d=\'M22 6L26 2M26 10L30 6\' stroke=\'%239333EA\' stroke-width=\'1.5\' stroke-linecap=\'round\'/%3e%3cpath d=\'M20 8L24 4M24 12L28 8\' stroke=\'%2306B6D4\' stroke-width=\'1\' stroke-linecap=\'round\'/%3e%3c/svg%3e") 16 16, auto'
+      style={{
+        background: backgroundGradient,
+        cursor: customCursor,
       }}
     >
       <BookBackground />
-      
-      <BookNavigation 
+
+      <BookNavigation
         pages={pages}
         currentPage={currentPage}
         goToPage={goToPage}
@@ -73,7 +103,7 @@ const BookContainer = () => {
             pageVariants={pageVariants}
             mobilePageVariants={mobilePageVariants}
           />
-          
+
           <BookControls
             prevPage={prevPage}
             nextPage={nextPage}
@@ -101,5 +131,5 @@ const BookContainer = () => {
     </div>
   );
 };
- 
+
 export default BookContainer;
