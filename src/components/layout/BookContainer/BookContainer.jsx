@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+
 import { useReducedMotion } from 'framer-motion';
 import { Home, User, FolderOpen, Mail } from 'lucide-react';
 import HomePage from '../../pages/HomePage';
@@ -23,7 +23,6 @@ import TransitionOverlay from './components/TransitionOverlay';
 import portfolioData from '../../../assets/data/portfolioData'; // Ajusta la ruta según tu estructura
 
 const BookContainer = () => {
-  const bookRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
   const isMobile = useMobileDetection();
 

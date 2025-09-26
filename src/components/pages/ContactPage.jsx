@@ -18,8 +18,6 @@ import {
   Coffee,
   ExternalLink,
   Sparkles,
-  Award,
-  TrendingUp
 } from 'lucide-react';
 
 const ContactPage = ({ data }) => {
