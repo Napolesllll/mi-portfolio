@@ -128,6 +128,12 @@ const ProjectsPage = memo(({ data }) => {
     ) {
       return '/explore.png';
     }
+      if (
+      project.title?.toLowerCase().includes('sst') ||
+      project.demoUrl?.includes('sstasualcance')
+    ) {
+      return '/sst.png';
+    }
     return null;
   };
 

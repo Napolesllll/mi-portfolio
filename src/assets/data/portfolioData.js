@@ -90,6 +90,7 @@ const portfolioData = {
       team: "Frontend Developer",
       status: "Completado"
     },
+    
     {
       id: 2,
       title: "Explore Heaven",
@@ -114,7 +115,35 @@ const portfolioData = {
       duration: "2 meses",
       team: "Full Stack Developer",
       status: "Completado"
-    }
+    },
+    {
+  id: 3,
+  title: "SST a su Alcance",
+  subtitle: "Sistema de Gestión en Seguridad y Salud en el Trabajo",
+  category: "Full Stack",
+  description:
+    "Sistema de Gestión diseñado para garantizar el cumplimiento de la normatividad en Seguridad y Salud en el Trabajo, mediante la identificación, evaluación y control de riesgos laborales. Su alcance comprende la formulación de políticas, procedimientos y programas de prevención, la implementación de medidas correctivas y de mejora continua, así como la vigilancia de condiciones de seguridad industrial, higiene ocupacional y factores psicosociales.",
+  longDescription:
+    "Plataforma web desarrollada para la gestión integral de Seguridad y Salud en el Trabajo (SST). Incluye módulos para el registro y seguimiento de riesgos laborales, control documental, planes de acción, indicadores de desempeño y generación de reportes automatizados. Su enfoque permite centralizar la información, optimizar procesos y garantizar el cumplimiento normativo vigente.",
+  technologies: ["Next.js", "Node.js", "Prisma", "PostgreSQL"],
+  features: [
+    "📊 Panel de control con métricas en tiempo real",
+    "📝 Gestión de riesgos y planes de acción",
+    "📂 Control documental y normativo",
+    "📱 Diseño responsive y accesible"
+  ],
+  highlights: [
+    "Cumplimiento con normativas de SST nacionales",
+    "Automatización de reportes y seguimiento",
+    "Optimización en tiempos de gestión administrativa"
+  ],
+  demoUrl: "https://sstasualcance.com/",
+  githubUrl: "#",
+  duration: "2 meses",
+  team: "Frontend Developer",
+  status: "En desarrollo"
+}
+
   ]
 };
 
