@@ -48,13 +48,13 @@ const portfolioData = {
   ],
   education: [
     {
-      id: 1,
-      degree: "Ingeniería en Sistemas",
-      institution: "Universidad Tecnológica",
-      location: "Medellín, Colombia",
-      period: "2016 - 2020",
-      description: "Especialización en desarrollo de software y bases de datos"
-    }
+  id: 1,
+  degree: "Especialización en Desarrollo Full Stack",
+  institution: "Universidad EAFIT",
+  location: "Medellín, Colombia",
+  period: "2020 - 2022",
+  description: "Formación integral en arquitectura de software, desarrollo web full stack y diseño de sistemas escalables. Especialización en tecnologías modernas como React, Node.js, bases de datos relacionales y no relacionales, cloud computing y metodologías ágiles. Proyectos prácticos enfocados en soluciones enterprise y aplicaciones de alto rendimiento."
+}
   ],
   certifications: [
     {

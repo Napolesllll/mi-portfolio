@@ -4,11 +4,10 @@ import {
   Mail, 
   Github, 
   Linkedin, 
-  Twitter,
+  MessageCircle,
   MapPin,
   Phone,
   Send,
-  MessageCircle,
   Globe,
   Calendar,
   Clock,
@@ -85,12 +84,12 @@ const ContactPage = ({ data }) => {
       description: 'Conectemos profesionalmente'
     },
     {
-      icon: Twitter,
-      name: 'Twitter',
-      username: '@tu_usuario',
-      url: social?.twitter || 'https://twitter.com/tu-usuario',
-      color: 'bg-sky-500 hover:bg-sky-600',
-      description: 'Sígueme para updates'
+      icon: MessageCircle,
+      name: 'WhatsApp',
+      username: personal?.phone || '+1 234 567 8900',
+      url: `https://wa.me/${personal?.phone?.replace(/\D/g, '')}` || 'https://wa.me/1234567890',
+      color: 'bg-green-600 hover:bg-green-700',
+      description: 'Chatea conmigo directamente'
     },
     {
       icon: Globe,
@@ -453,7 +452,7 @@ const ContactPage = ({ data }) => {
             </p>
             
             <motion.button
-              onClick={() => window.open('https://calendly.com/tu-usuario', '_blank')}
+              onClick={() => window.open('https://calendly.com/canojhon148', '_blank')}
               className="btn-secondary flex items-center space-x-2 mx-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
