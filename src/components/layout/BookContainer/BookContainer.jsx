@@ -57,11 +57,7 @@ const BookContainer = () => {
   const CurrentPageComponent = pages[currentPage].component;
 
   // Cursor personalizado (memoizado)
-  const customCursor = useMemo(
-    () =>
-      'url("data:image/svg+xml;charset=UTF-8,%3csvg width=\'32\' height=\'32\' viewBox=\'0 0 32 32\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3cpath d=\'M4 28L28 4M28 4L24 8M28 4L24 4M28 4L28 8\' stroke=\'%23FFD700\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3e%3cpath d=\'M22 6L26 2M26 10L30 6\' stroke=\'%239333EA\' stroke-width=\'1.5\' stroke-linecap=\'round\'/%3e%3cpath d=\'M20 8L24 4M24 12L28 8\' stroke=\'%2306B6D4\' stroke-width=\'1\' stroke-linecap=\'round\'/%3e%3c/svg%3e") 16 16, auto',
-    []
-  );
+ const customCursor = 'url("data:image/svg+xml;charset=UTF-8,%3csvg width=\'32\' height=\'32\' viewBox=\'0 0 32 32\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3e%3cg transform=\'scale(-1, 1) translate(-32, 0)\'%3e%3cpath d=\'M4 28L28 4M28 4L24 8M28 4L24 4M28 4L28 8\' stroke=\'%23FFD700\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3e%3cpath d=\'M22 6L26 2M26 10L30 6\' stroke=\'%239333EA\' stroke-width=\'1.5\' stroke-linecap=\'round\'/%3e%3cpath d=\'M20 8L24 4M24 12L28 8\' stroke=\'%2306B6D4\' stroke-width=\'1\' stroke-linecap=\'round\'/%3e%3c/g%3e%3c/svg%3e") 16 16, auto';
 
   // Background gradient (memoizado)
   const backgroundGradient = useMemo(
